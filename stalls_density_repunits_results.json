@@ -1,0 +1,90 @@
+{
+ "E5_c_variants_on_rho_failures": {
+  "20": {
+   "fixed_c2": "stalls at 15",
+   "randomized_c": "success"
+  },
+  "40": {
+   "fixed_c2": "stalls at 15",
+   "randomized_c": "success"
+  },
+  "60": {
+   "fixed_c2": "stalls at 45",
+   "randomized_c": "success"
+  },
+  "80": {
+   "fixed_c2": "stalls at 15",
+   "randomized_c": "success"
+  },
+  "100": {
+   "fixed_c2": "stalls at 15",
+   "randomized_c": "success"
+  }
+ },
+ "E5_rho_c2_on_15": "cannot split (phase-locked)",
+ "C3_M29_density": {
+  "predicted": 0.9056,
+  "measured": 0.9056,
+  "n_bases": 1493
+ },
+ "R_repunit_out_of_sample": {
+  "3": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "5": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "7": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "11": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "13": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "17": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "19": {
+   "status": "prime, skipped"
+  },
+  "23": {
+   "status": "prime, skipped"
+  },
+  "29": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "31": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "37": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  },
+  "41": {
+   "predicted": "success",
+   "observed": "success",
+   "match": true
+  }
+ },
+ "E5_rho_c2_on_45": "cannot split (mod-9 collapse onto {2,6} plus lockstep with mod-5)",
+ "E5_note": "corrected 2026-08-16: original label hard-coded \"15 blind spot\" for all five; i=60 actually stalls at 45 because 9 | 2^60-1 and x^2+2 never yields gcd 3 mod 9"
+}
