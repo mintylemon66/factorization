@@ -33,3 +33,39 @@ Apple M3, CPU time via `time.process_time`, one run per input. Runtimes are heav
 To reproduce a run: each numbered script has its timing loop at the bottom. Paste a dataset in as `my_list` (for example from `20digit.txt`) and run the script with python3. It prints one runtime in ms per input.
 
 Two implementation notes for anyone reading closely: the QS gives up if a single sieve interval does not produce enough smooth relations (no retry, no multiple polynomials), and it proceeds at exactly |P| relations where the dependency guarantee needs |P| + 1. Both are deliberate simplifications of a baseline implementation.
+
+
+## Mersenne failure sets for trial division and Fermat's method
+
+Found by rerunning the implementations here on all 106 Mersenne inputs
+2^i - 1 (i = 2..107) under fixed CPU budgets, since the original terminations
+were by hand:
+
+- Trial division: seven inputs are out of reach outright, i in
+  {83, 89, 97, 98, 101, 103, 107}, each needing from about half an hour to more
+  than a decade of CPU (i = 98 because 2^98 - 1 has two prime factors near
+  4.4e12; the others are Mersenne primes or have a huge second factor to
+  disprove). The paper's four remaining failures were runs cut off by hand
+  in the roughly 13 to 70 second range (from
+  {61, 62, 77, 93, 95}); a five-minute budget completes all of them.
+- Fermat's method: every even exponent completes instantly, since
+  2^(2m) - 1 = (2^m - 1)(2^m + 1) splits at the very first step. The odd
+  exponents 3 to 29, 33, 35, 39, 43, 45, 47, and 55 also complete (at most
+  1.4 s); i = 51 (26 s) and i = 75 (49 s) complete under a fixed budget but
+  were cut off by hand in the original runs. All other odd exponents
+  fail (at least minutes to hours of stepping).
+
+## Datasets
+
+The random timing datasets are `20digit.txt` and `30digit.txt` (500 uniform
+random integers each from [10^19, 10^20) and [10^29, 10^30), no screening).
+The Mersenne dataset is generated in code: `[2**i - 1 for i in range(2, 108)]`.
+Note: the timing driver lines at the bottom of the numbered method scripts were
+edited between runs (dataset pasted in, entry point switched), and the committed
+snapshot reflects the last run: the `my_list` currently pasted in is the
+`randomsemiprime.py` side dataset, not the timing dataset, so re-running those
+scripts as-is does not reproduce the random-composite tables without pasting in
+`20digit.txt` or `30digit.txt`. The Mersenne rho column in the paper was
+produced with the recursive `factor()` wrapper defined in `3_pollards_rho.py`
+(rerunning it on all 106 Mersenne inputs reproduces the published failure set
+exactly).
